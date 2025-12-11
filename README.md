@@ -36,15 +36,15 @@ that is currently unoccupied.
 -Technology Stack
 The technologies we used, are HTML, CSS, JAVASCRIPT, and PHP
 
-├── index.php              # Main entry point (PHP)
-├── Tictac.html           # HTML structure (standalone)
-├── tictac.js             # JavaScript (frontend logic & API calls)
-├── frontend.css          # CSS styles
-└── Backend/
-    ├── api.php           # API endpoint for game logic
-    ├── Game.php          # Game controller class
-    ├── Board.php         # Board logic class
-    └── Player.php        # Player class
+-- index.php              # Main entry point (PHP)
+-- Tictac.html           # HTML structure (standalone)
+-- tictac.js             # JavaScript (frontend logic & API calls)
+-- frontend.css          # CSS styles
+-- Backend/
+    -- api.php           # API endpoint for game logic
+    -- Game.php          # Game controller class
+    -- Board.php         # Board logic class
+    -- Player.php        # Player class
 
 1. **Frontend (HTML/CSS/JS)**
    - `Tictac.html` or `index.php` displays the UI
@@ -93,4 +93,46 @@ Custom Avatars & Sounds
 -Put your avatars in Frontend/avatars, use the customization menu in the game to pick new ones.
 -Sound effects are in Frontend/sounds.
 
+COMPLETE SOURCE CODE
+
+OOP FINAL PROJ/
+│
+├── Backend/
+│   ├── api.php          # Main server-side API endpoint [configuration: none required]
+│   ├── Board.php        # OOP Board class [no config]
+│   ├── Game.php         # OOP Game logic [no config]
+│   ├── Player.php       # OOP Player class [no config]
+│
+├── Frontend/
+│   ├── index.php        # Main web frontend entrypoint [may reference css/js]
+│   ├── Tictac.html      # Alternative HTML-only mode (offline/standalone)
+│   ├── tictac.js        # JavaScript frontend/game logic [usually no config needed]
+│   ├── JS frontend.js   # (If present, another frontend JavaScript file)
+│   ├── CSS Frontend.css # CSS file for styling [edit to customize theme]
+│   ├── avatars/         # Folder for avatar images [add more here]
+│   ├── sounds/          # Folder for game music and sound effects
+│   └── README.md        # Readme documentation (setup instructions)
+
+Files that Need Configuration
+
+a) PHP files (Backend/*.php):
+No config needed! All file paths are local and work "as is" if the folder is not moved/divided.
+
+b) Frontend files (Frontend/):
+index.php: No configuration needed. It references frontend.css and tictac.js which are expected in the same folder.
+Tictac.html: Standalone, but will only give full functionality if the backend (api.php) is properly served (see below).
+
+c) Image/Avatar & Sound Folders (avatars/, sounds/):
+Avatars and sounds can be extended/changed just by adding files here; no code config required, but image names should be consistent in the UI.
+
+d) CSS Frontend.css:
+Edit to change look and feel; no required config.
+
+e) Workspace/project files:
+.code-workspace and similar files are only for advanced IDE use and not needed for running the game.
+
+f) README.md:
+Provides documentation—no config needed, serves as instructions only.
+
+and YOU'RE DONE!! play and enjoy.
 
