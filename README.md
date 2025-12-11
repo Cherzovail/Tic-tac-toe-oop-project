@@ -78,3 +78,19 @@ victory. It is an absolute rule that a player may only place their mark into a c
 that is currently unoccupied.
 
 -How to run the program
+*Installation instructions*
+-Make sure you have PHP installed (download windows php and add it to your PATH)
+-Open terminal/Powershell window and navigate to he project folder
+-Start the PHP built-in server (php -S localhost:8000) -this will serve the project locally
+-Play the game in your Web Browser (open your web browser and go to *http://localhost:8000/Frontend/index.php* or *http://localhost:8000/Frontend/Tictac.html*
+
+To Play it with your Friends (LAN/Network)
+-Ensure all computers are connected to the same local network
+-Start the PHP server on one machine
+-On other devices, open browser and enter http://SERVER_IP:8000/Frontend/index.php (replace SERVER_IP with the real local IP).
+
+Custom Avatars & Sounds
+-Put your avatars in Frontend/avatars, use the customization menu in the game to pick new ones.
+-Sound effects are in Frontend/sounds.
+
+
