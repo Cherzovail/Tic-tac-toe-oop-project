@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="CSS Frontend.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Tic Tac Toe</h1>
+      <div class="controls">
+        <button id="playBtn">PLAY</button>
+        <button id="customBtn" class="secondary">CUSTOMIZE</button>
+      </div>
+    </header>
+
+    <div class="top-row">
+      <div class="muted">Turn: <strong id="turnDisplay">X</strong></div>
+      <div class="muted">Moves: <span id="movesCount">0</span>/9</div>
+    </div>
+
+    <div class="board" id="game-board">
+    </div>
+
+    <div class="status">
+      <div class="scores" id="scoresPanel">
+        <div class="score-card" id="playerXCard">
+          <img id="playerXAvatar" src="avatars/avatar1.png" alt="Player X" class="avatar-img">
+          <div class="score-info">X: <strong id="scoreX">0</strong></div>
+        </div>
+        <div class="score-card" id="playerOCard">
+          <img id="playerOAvatar" src="avatars/avatar1.png" alt="Player O" class="avatar-img">
+          <div class="score-info">O: <strong id="scoreO">0</strong></div>
+        </div>
+      </div>
+      <div class="muted" id="message">Make a move</div>
+      <button id="restartBtn" class="hidden">RESTART</button>
+    </div>
+  </div>
+
+  <!-- Options menu modal -->
+  <div class="modal" id="optionsModal">
+    <div class="modal-content modal-large">
+      <div class="modal-header">
+        <h3>Main Menu</h3>
+      </div>
+      <div class="modal-body modal-center">
+        <button id="optionsPlayBtn" class="btn-large">PLAY</button>
+        <button id="optionsSettingsBtn" class="btn-large secondary">SETTINGS</button>
+        <button id="optionsExitBtn" class="btn-large secondary">EXIT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player setup modal -->
+  <div class="modal" id="playerSetupModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Player Setup</h3>
+        <div>
+          <button id="closePlayerSetup" class="btn-ghost">Close</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <label>Player 1 (X) Name: <input type="text" id="player1NameInput" placeholder="Enter Player 1 name"></label>
+        
+        <div class="avatar-picker">
+          <label>Player 1 Avatar:</label>
+          <div class="avatar-selector" id="player1AvatarSelector">
+            <div class="avatar-selected" id="player1AvatarSelected">
+              <img src="avatars/avatar1.png" alt="Selected" class="selected-avatar-img">
+              <span>Avatar 1</span>
+            </div>
+            <div class="avatar-dropdown hidden" id="player1AvatarDropdown">
+              <div class="avatar-option" data-avatar="avatar1">
+                <img src="avatars/avatar1.png" alt="Avatar 1" class="option-img">
+                <span>Avatar 1</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar2">
+                <img src="avatars/avatar2.png" alt="Avatar 2" class="option-img">
+                <span>Avatar 2</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar3">
+                <img src="avatars/avatar3.png" alt="Avatar 3" class="option-img">
+                <span>Avatar 3</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar4">
+                <img src="avatars/avatar4.jpg" alt="Avatar 4" class="option-img">
+                <span>Avatar 4</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="player1AvatarSelect" value="avatar1">
+        </div>
+        
+        <hr>
+        
+        <label>Player 2 (O) Name: <input type="text" id="player2NameInput" placeholder="Enter Player 2 name"></label>
+        
+        <div class="avatar-picker">
+          <label>Player 2 Avatar:</label>
+          <div class="avatar-selector" id="player2AvatarSelector">
+            <div class="avatar-selected" id="player2AvatarSelected">
+              <img src="avatars/avatar1.png" alt="Selected" class="selected-avatar-img">
+              <span>Avatar 1</span>
+            </div>
+            <div class="avatar-dropdown hidden" id="player2AvatarDropdown">
+              <div class="avatar-option" data-avatar="avatar1">
+                <img src="avatars/avatar1.png" alt="Avatar 1" class="option-img">
+                <span>Avatar 1</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar2">
+                <img src="avatars/avatar2.png" alt="Avatar 2" class="option-img">
+                <span>Avatar 2</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar3">
+                <img src="avatars/avatar3.png" alt="Avatar 3" class="option-img">
+                <span>Avatar 3</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar4">
+                <img src="avatars/avatar4.jpg" alt="Avatar 4" class="option-img">
+                <span>Avatar 4</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="player2AvatarSelect" value="avatar1">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="startGameBtn">START GAME</button>
+        <button id="cancelGameBtn" class="secondary">CANCEL</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Win popup modal -->
+  <div class="modal" id="winModal">
+    <div class="modal-content modal-win">
+      <div class="modal-header modal-header-center">
+        <h3 id="winMessage">Player Wins!</h3>
+      </div>
+      <div class="modal-footer modal-footer-center">
+        <button id="winRestartBtn">PLAY AGAIN</button>
+        <button id="winMenuBtn" class="secondary">MAIN MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Draw popup modal -->
+  <div class="modal" id="drawModal">
+    <div class="modal-content modal-win">
+      <div class="modal-header modal-header-center">
+        <h3 id="drawMessage">It's a Draw!</h3>
+      </div>
+      <div class="modal-footer modal-footer-center">
+        <button id="drawRestartBtn">PLAY AGAIN</button>
+        <button id="drawMenuBtn" class="secondary">MAIN MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customize modal -->
+  <div class="modal" id="customModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Customize</h3>
+        <div>
+          <button id="closeCustom" class="btn-ghost">Close</button>
+        </div>
+      </div>
+      <p class="small">Click to select an avatar for each player.</p>
+
+      <div class="modal-body">
+        <div class="avatar-picker">
+          <label>Player X Avatar:</label>
+          <div class="avatar-selector" id="xAvatarSelector">
+            <div class="avatar-selected" id="xAvatarSelected">
+              <img src="avatars/avatar1.png" alt="Selected" class="selected-avatar-img">
+              <span>Avatar 1</span>
+            </div>
+            <div class="avatar-dropdown hidden" id="xAvatarDropdown">
+              <div class="avatar-option" data-avatar="avatar1">
+                <img src="avatars/avatar1.png" alt="Avatar 1" class="option-img">
+                <span>Avatar 1</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar2">
+                <img src="avatars/avatar2.png" alt="Avatar 2" class="option-img">
+                <span>Avatar 2</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar3">
+                <img src="avatars/avatar3.png" alt="Avatar 3" class="option-img">
+                <span>Avatar 3</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar4">
+                <img src="avatars/avatar4.jpg" alt="Avatar 4" class="option-img">
+                <span>Avatar 4</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="xAvatarSelect" value="avatar1">
+        </div>
+        
+        <hr>
+        
+        <div class="avatar-picker">
+          <label>Player O Avatar:</label>
+          <div class="avatar-selector" id="oAvatarSelector">
+            <div class="avatar-selected" id="oAvatarSelected">
+              <img src="avatars/avatar1.png" alt="Selected" class="selected-avatar-img">
+              <span>Avatar 1</span>
+            </div>
+            <div class="avatar-dropdown hidden" id="oAvatarDropdown">
+              <div class="avatar-option" data-avatar="avatar1">
+                <img src="avatars/avatar1.png" alt="Avatar 1" class="option-img">
+                <span>Avatar 1</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar2">
+                <img src="avatars/avatar2.png" alt="Avatar 2" class="option-img">
+                <span>Avatar 2</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar3">
+                <img src="avatars/avatar3.png" alt="Avatar 3" class="option-img">
+                <span>Avatar 3</span>
+              </div>
+              <div class="avatar-option" data-avatar="avatar4">
+                <img src="avatars/avatar4.jpg" alt="Avatar 4" class="option-img">
+                <span>Avatar 4</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="oAvatarSelect" value="avatar1">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="saveCustom">Save</button>
+        <button id="resetCustom" class="secondary">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="tictac.js"></script>
+
+  <!-- Audio elements for sound effect -->
+  <audio id="bgMusic" preload="auto" loop>
+    <source src="sounds/mario-theme.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="coinSound" preload="auto">
+    <source src="sounds/coin.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="gameOverSound" preload="auto">
+    <source src="sounds/game-over.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="stageWinSound" preload="auto">
+    <source src="sounds/stage-win.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>
