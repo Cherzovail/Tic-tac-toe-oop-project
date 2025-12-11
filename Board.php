@@ -1,8 +1,4 @@
 <?php
-/**
- * Class Board
- * Holds the tic-tac-toe grid and win logic
- */
 class Board {
     private $cells;
 
@@ -28,7 +24,6 @@ class Board {
     }
 
     public function checkWin($symbol) {
-        // Rows/Cols/Diagonals
         for ($i = 0; $i < 3; $i++) {
             if ($this->cells[$i][0] == $symbol && $this->cells[$i][1] == $symbol && $this->cells[$i][2] == $symbol) return true;
             if ($this->cells[0][$i] == $symbol && $this->cells[1][$i] == $symbol && $this->cells[2][$i] == $symbol) return true;
@@ -50,4 +45,5 @@ class Board {
     }
 }
 ?>
+
 
