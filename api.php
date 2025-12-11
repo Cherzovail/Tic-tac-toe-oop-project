@@ -7,7 +7,6 @@ require_once 'Game.php';
 
 session_start();
 
-// Initialize game session if needed
 if (!isset($_SESSION['game'])) {
     $_SESSION['game'] = new Game();
     $_SESSION['scores'] = ['X' => 0, 'O' => 0];
@@ -19,7 +18,6 @@ $action = $_POST['action'] ?? $_GET['action'] ?? '';
 $response = ['success' => false, 'message' => ''];
 
 if ($action === 'move') {
-    // Process a move from frontend
     $index = intval($_POST['index'] ?? -1);
     
     if ($index < 0 || $index > 8) {
@@ -28,7 +26,6 @@ if ($action === 'move') {
         exit;
     }
     
-    // Convert 1D index to 2D board coords
     $row = intval($index / 3);
     $col = $index % 3;
     
@@ -55,8 +52,7 @@ if ($action === 'move') {
         $response['win'] = false;
         $response['currentPlayer'] = $game->getCurrentPlayer()->getSymbol();
     }
-    
-    // Check for draw
+
     $boardCells = $game->getBoard();
     $moves = 0;
     if (is_array($boardCells)) {
@@ -76,7 +72,6 @@ if ($action === 'move') {
     $response['board'] = $boardCells;
     
 } elseif ($action === 'reset') {
-    // Reset game board
     $_SESSION['game'] = new Game();
     $game = $_SESSION['game'];
     $response['success'] = true;
@@ -86,7 +81,6 @@ if ($action === 'move') {
     $response['message'] = 'Game reset';
     
 } elseif ($action === 'getState') {
-    // Get current game state
     $response['success'] = true;
     $response['board'] = $game->getBoard();
     $response['scores'] = $_SESSION['scores'];
@@ -98,3 +92,4 @@ if ($action === 'move') {
 
 echo json_encode($response);
 ?>
+
