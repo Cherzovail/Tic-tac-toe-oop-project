@@ -1,8 +1,4 @@
 <?php
-/**
- * Class Player
- * Represents a game player
- */
 class Player {
     protected $symbol;
 
@@ -15,3 +11,4 @@ class Player {
     }
 }
 ?>
+
