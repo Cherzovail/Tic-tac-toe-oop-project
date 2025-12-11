@@ -1,5 +1,3 @@
-// ----- TIC TAC TOE FRONTEND LOGIC -----
-
 let board, currentPlayer, moves;
 
 function initGame() {
@@ -71,7 +69,7 @@ function checkWinner(row, col) {
     if (board[row].every(cell => cell === symbol)) return true;
     // Column
     if ([0,1,2].every(r => board[r][col] === symbol)) return true;
-    // Diagonals
+    // Diagonal
     if (row === col && [0,1,2].every(i => board[i][i] === symbol)) return true;
     if (row + col === 2 && [0,1,2].every(i => board[i][2-i] === symbol)) return true;
     return false;
@@ -87,3 +85,4 @@ function endGame() {
 document.getElementById('playBtn').addEventListener('click', initGame);
 
 window.onload = initGame;
+
