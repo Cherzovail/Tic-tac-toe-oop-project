@@ -137,4 +137,4 @@ Provides documentation—no config needed, serves as instructions only.
 and YOU'RE DONE!! play and enjoy.
 
 *VIDEO DEMONSTRATION LINK*
-https://drive.google.com/drive/u/1/folders/1dY7CEOOCCV4tghsgqIvwN80CzALAj6N_
+[https://drive.google.com/drive/u/1/folders/1dY7CEOOCCV4tghsgqIvwN80CzALAj6N_](https://drive.google.com/drive/folders/1dY7CEOOCCV4tghsgqIvwN80CzALAj6N_?usp=sharing)
